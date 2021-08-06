@@ -1,5 +1,6 @@
 package br.com.zup.edu.cineminhatestes.filmes;
 
+import br.com.zup.edu.cineminhatestes.ingressos.Tipo;
 import br.com.zup.edu.cineminhatestes.salas.Sala;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalTime;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -52,5 +54,9 @@ public class Sessao {
 
     public BigDecimal getPreco() {
         return preco;
+    }
+
+    public Filme getFilme() {
+        return filme;
     }
 }

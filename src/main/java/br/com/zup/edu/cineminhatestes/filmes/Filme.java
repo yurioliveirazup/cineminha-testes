@@ -1,5 +1,7 @@
 package br.com.zup.edu.cineminhatestes.filmes;
 
+import br.com.zup.edu.cineminhatestes.usuarios.Usuario;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -46,5 +48,9 @@ public class Filme {
                 .add("nome='" + nome + "'")
                 .add("duracao=" + duracao)
                 .toString();
+    }
+
+    public boolean podeSerAssistido(Usuario usuario) {
+        return classificacao.comporta(usuario);
     }
 }

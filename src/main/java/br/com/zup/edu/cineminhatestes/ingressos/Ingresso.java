@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -53,7 +52,8 @@ public class Ingresso {
 
         this.sessao = sessao;
         this.tipo = tipo;
-        this.preco = sessao.getPreco();
+
+        this.preco = tipo.calculaPreco(sessao.getPreco());
         this.usuario = usuario;
     }
 

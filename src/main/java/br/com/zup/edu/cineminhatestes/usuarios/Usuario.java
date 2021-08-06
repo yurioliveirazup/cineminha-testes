@@ -1,5 +1,8 @@
 package br.com.zup.edu.cineminhatestes.usuarios;
 
+import br.com.zup.edu.cineminhatestes.filmes.Filme;
+import br.com.zup.edu.cineminhatestes.filmes.Sessao;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -45,6 +48,14 @@ public class Usuario {
 
     public String getEmail() {
         return email;
+    }
+
+    public LocalDate getDataDeNascimento() {
+        return dataDeNascimento;
+    }
+
+    public boolean podeAssistir(Filme filme) {
+        return filme.podeSerAssistido(this);
     }
 
     @Override

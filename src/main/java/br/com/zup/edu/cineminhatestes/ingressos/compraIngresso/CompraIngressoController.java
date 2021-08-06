@@ -6,6 +6,7 @@ import br.com.zup.edu.cineminhatestes.ingressos.IngressoRepository;
 import br.com.zup.edu.cineminhatestes.usuarios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

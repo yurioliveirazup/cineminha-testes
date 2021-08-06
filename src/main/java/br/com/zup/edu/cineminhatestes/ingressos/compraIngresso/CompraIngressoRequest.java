@@ -1,11 +1,13 @@
 package br.com.zup.edu.cineminhatestes.ingressos.compraIngresso;
 
+import br.com.zup.edu.cineminhatestes.compartilhado.validacoes.ClassificacaoIndicativa;
 import br.com.zup.edu.cineminhatestes.filmes.Sessao;
 import br.com.zup.edu.cineminhatestes.filmes.SessaoRepository;
 import br.com.zup.edu.cineminhatestes.ingressos.Ingresso;
 import br.com.zup.edu.cineminhatestes.ingressos.Tipo;
 import br.com.zup.edu.cineminhatestes.usuarios.Usuario;
 import br.com.zup.edu.cineminhatestes.usuarios.UsuarioRepository;
+import org.springframework.util.Assert;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +16,7 @@ import javax.validation.constraints.Positive;
 import java.util.Optional;
 import java.util.StringJoiner;
 
+@ClassificacaoIndicativa
 public class CompraIngressoRequest {
 
     @Email
@@ -24,20 +27,15 @@ public class CompraIngressoRequest {
     @Positive
     private Long sessaoId;
 
-    private Tipo tipo;
-
     @NotNull
-    @Positive
-    private Long usuarioId;
+    private Tipo tipo;
 
     public CompraIngressoRequest(String email,
                                  Long sessaoId,
-                                 Tipo tipo,
-                                 Long usuarioId) {
+                                 Tipo tipo) {
         this.email = email;
         this.sessaoId = sessaoId;
         this.tipo = tipo;
-        this.usuarioId = usuarioId;
     }
 
     public Ingresso paraIngresso(SessaoRepository sessaoRepository,
@@ -48,7 +46,7 @@ public class CompraIngressoRequest {
             throw new IllegalStateException("Sessao nao cadastrada");
         }
 
-        Optional<Usuario> possivelUsuario = usuarioRepository.findById(usuarioId);
+        Optional<Usuario> possivelUsuario = usuarioRepository.findByEmail(email);
         if (possivelUsuario.isEmpty()) {
             throw new IllegalStateException("Usuario nao cadastrada");
         }
@@ -56,6 +54,15 @@ public class CompraIngressoRequest {
         Sessao sessao = possivelSessao.get();
         Usuario usuario = possivelUsuario.get();
         return new Ingresso(sessao, tipo, usuario);
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Long getSessaoId() {
+        return sessaoId;
     }
 
     @Override
