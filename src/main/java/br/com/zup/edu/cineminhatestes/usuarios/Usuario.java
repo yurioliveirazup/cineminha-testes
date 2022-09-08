@@ -1,5 +1,9 @@
 package br.com.zup.edu.cineminhatestes.usuarios;
 
+import br.com.zup.edu.cineminhatestes.filmes.Filme;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,6 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.StringJoiner;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -43,6 +48,11 @@ public class Usuario {
         this.dataDeNascimento = dataDeNascimento;
     }
 
+    public boolean podeAssistir(Filme filme) {
+
+        return filme.podeSerAssistido(dataDeNascimento);
+    }
+
     public String getEmail() {
         return email;
     }
@@ -60,4 +70,6 @@ public class Usuario {
                 .add("dataDeNascimento=" + dataDeNascimento)
                 .toString();
     }
+
+
 }

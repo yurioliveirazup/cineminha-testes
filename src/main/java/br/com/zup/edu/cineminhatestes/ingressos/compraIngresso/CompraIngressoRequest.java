@@ -1,5 +1,6 @@
 package br.com.zup.edu.cineminhatestes.ingressos.compraIngresso;
 
+import br.com.zup.edu.cineminhatestes.compartilhado.validacoes.ClassificacaoIndicativa;
 import br.com.zup.edu.cineminhatestes.filmes.Sessao;
 import br.com.zup.edu.cineminhatestes.filmes.SessaoRepository;
 import br.com.zup.edu.cineminhatestes.ingressos.Ingresso;
@@ -14,27 +15,23 @@ import javax.validation.constraints.Positive;
 import java.util.Optional;
 import java.util.StringJoiner;
 
+@ClassificacaoIndicativa
 public class CompraIngressoRequest {
-
-    @Email
-    @NotBlank
-    private String email;
 
     @NotNull
     @Positive
     private Long sessaoId;
 
+    @NotNull
     private Tipo tipo;
 
     @NotNull
     @Positive
     private Long usuarioId;
 
-    public CompraIngressoRequest(String email,
-                                 Long sessaoId,
+    public CompraIngressoRequest(Long sessaoId,
                                  Tipo tipo,
                                  Long usuarioId) {
-        this.email = email;
         this.sessaoId = sessaoId;
         this.tipo = tipo;
         this.usuarioId = usuarioId;
@@ -58,10 +55,17 @@ public class CompraIngressoRequest {
         return new Ingresso(sessao, tipo, usuario);
     }
 
+    public Long getSessaoId() {
+        return sessaoId;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", CompraIngressoRequest.class.getSimpleName() + "[", "]")
-                .add("email='" + email + "'")
                 .add("sessaoId=" + sessaoId)
                 .add("tipo=" + tipo)
                 .toString();

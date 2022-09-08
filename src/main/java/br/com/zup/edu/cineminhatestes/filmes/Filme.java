@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.StringJoiner;
 
 import static javax.persistence.EnumType.STRING;
@@ -37,6 +39,10 @@ public class Filme {
         this.nome = nome;
         this.duracao = duracao;
         this.classificacao = classificacao;
+    }
+
+    public boolean podeSerAssistido(LocalDate dataDeNascimento) {
+        return classificacao.comporta(dataDeNascimento);
     }
 
     public Classificacao getClassificacao() {
