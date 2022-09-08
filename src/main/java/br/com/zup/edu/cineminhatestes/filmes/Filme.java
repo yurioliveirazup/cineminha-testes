@@ -39,6 +39,10 @@ public class Filme {
         this.classificacao = classificacao;
     }
 
+    public Classificacao getClassificacao() {
+        return classificacao;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Filme.class.getSimpleName() + "[", "]")

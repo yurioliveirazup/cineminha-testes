@@ -7,13 +7,16 @@ public class EmailTemplate {
     private String remetente;
     private String destinatario;
     private String assunto;
+    private String corpo;
 
     public EmailTemplate(String remetente,
                          String destinatario,
-                         String assunto) {
+                         String assunto,
+                         String corpo) {
         this.remetente = remetente;
         this.destinatario = destinatario;
         this.assunto = assunto;
+        this.corpo = corpo;
     }
 
     /**
@@ -32,6 +35,10 @@ public class EmailTemplate {
 
     public String getAssunto() {
         return assunto;
+    }
+
+    public String getCorpo() {
+        return corpo;
     }
 
     @Override

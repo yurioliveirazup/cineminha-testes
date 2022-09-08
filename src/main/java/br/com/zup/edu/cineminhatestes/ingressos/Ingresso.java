@@ -61,4 +61,23 @@ public class Ingresso {
         return usuario.getEmail();
     }
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
 }

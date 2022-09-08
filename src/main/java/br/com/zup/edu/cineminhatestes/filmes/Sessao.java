@@ -53,4 +53,8 @@ public class Sessao {
     public BigDecimal getPreco() {
         return preco;
     }
+
+    public Filme getFilme() {
+        return filme;
+    }
 }
