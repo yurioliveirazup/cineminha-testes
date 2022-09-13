@@ -8,8 +8,6 @@ import br.com.zup.edu.cineminhatestes.ingressos.Tipo;
 import br.com.zup.edu.cineminhatestes.usuarios.Usuario;
 import br.com.zup.edu.cineminhatestes.usuarios.UsuarioRepository;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Optional;

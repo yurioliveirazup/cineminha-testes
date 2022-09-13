@@ -7,9 +7,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -29,7 +32,7 @@ public class Ingresso {
     private LocalDateTime horaDaCompra = LocalDateTime.now();
 
     @NotNull
-    @Positive
+    @PositiveOrZero
     private BigDecimal preco;
 
     @NotNull
@@ -53,8 +56,8 @@ public class Ingresso {
 
         this.sessao = sessao;
         this.tipo = tipo;
-        this.preco = sessao.getPreco();
         this.usuario = usuario;
+        this.preco = tipo.calculaPrecoPara(sessao.getPreco());
     }
 
     public String getEmail() {

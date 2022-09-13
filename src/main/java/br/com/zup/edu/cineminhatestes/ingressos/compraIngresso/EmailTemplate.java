@@ -9,7 +9,7 @@ public class EmailTemplate {
     private String assunto;
     private String corpo;
 
-    public EmailTemplate(String remetente,
+    private EmailTemplate(String remetente,
                          String destinatario,
                          String assunto,
                          String corpo) {
@@ -40,6 +40,30 @@ public class EmailTemplate {
     public String getCorpo() {
         return corpo;
     }
+
+    public static EmailTemplate destinatario(String destinatario) {
+        EmailTemplate email = new EmailTemplate();
+        email.destinatario = destinatario;
+
+        return email;
+    }
+
+    public EmailTemplate remetente(String remetente) {
+        this.remetente = remetente;
+        return this;
+    }
+
+    public EmailTemplate assunto(String assunto) {
+        this.assunto = assunto;
+        return this;
+    }
+
+
+    public EmailTemplate corpo(String corpo) {
+        this.corpo = corpo;
+        return this;
+    }
+
 
     @Override
     public String toString() {
